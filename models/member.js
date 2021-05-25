@@ -26,7 +26,8 @@ const member = {
 			
 			return true;
 		} catch (err) {
-		console.log(result);
+			console.error(err);
+			return false;
 		}
 		
 	},
