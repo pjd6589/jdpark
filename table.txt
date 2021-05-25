@@ -1,0 +1,27 @@
+형상관리툴
+CVS
+SVN
+GIT
+
+start project
+
+npm i express morgan dotenv nunjucks method-override multer cookie-parser express-session
+
+npm i -D nodemon
+
+npm i sequelize sequelize-cil mysql2
+
+npx sequelize init
+
+멤버 테이블 
+CREATE TABLE `member` (
+	`memId` VARCHAR(20) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`memPw` VARCHAR(65) NOT NULL COLLATE 'utf8_general_ci',
+	`isAdmin` TINYINT(1) NULL DEFAULT '0' COMMENT '1 - 관리자, 0 - 일반',
+	PRIMARY KEY (`memId`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
+npm i bcrypt
