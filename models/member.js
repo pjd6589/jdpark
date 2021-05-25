@@ -1,4 +1,4 @@
-const { sequlize, Sequelize : { QueryTypes } } = require("./index");
+const { sequelize, Sequelize : { QueryTypes } } = require("./index");
 const bcrypt = require('bcrypt');
 
 /**
@@ -40,7 +40,7 @@ const member = {
 	*
 	* @return Boolean
 	*/
-	login : async function(memId, memPw) {
+	login : async function(memId, memPw, req) {
 		const sql = "SELECT * FROM member WHERE memId = ? AND isAdmin=1";
 		const rows = await sequelize.query(sql, {
 			replacements : [memId],

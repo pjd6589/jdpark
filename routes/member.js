@@ -13,7 +13,7 @@ router.route("/join")
 		/** 회원 가입 처리 */
 		.post(joinValidator, async (req, res, next) => {
 			try {
-			const result = await member.join(req.body, req.memId, req.memPw);
+			const result = await member.join(req.body.memId, req.body.memPw);
 			if (result) {
 					return go("/member/login", res, "parent");
 				}
