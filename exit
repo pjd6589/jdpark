@@ -1,0 +1,35 @@
+[33mcommit 825e06ec6a5f9f981216fc57b46ee75f6026e852[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 12:21:51 2021 +0900
+
+    라우터 구성, 기본템플릿 설정
+
+[33mcommit 62f38b43254231127df76b6ad57f61e23a6726ae[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 11:22:20 2021 +0900
+
+    app.js 기본설정 작업
+
+[33mcommit a31a9d3f650922151e2a4907dab9775e22a6dc60[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 11:08:13 2021 +0900
+
+    app.js 기본 셋팅
+
+[33mcommit db3406375ef18024c5b8b0bd032263dbe000ab17[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 10:53:05 2021 +0900
+
+    gitignore 테스트
+
+[33mcommit 8e5c9f9ed9b19d608a8fa505bbb21dbeb98afca2[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 10:21:19 2021 +0900
+
+    package.json 추가
+
+[33mcommit 7f47828563cb03774b5032ae18ebdb78f045f81f[m
+Author: pjd6589 <pjd6587@naver.com>
+Date:   Tue May 25 10:13:05 2021 +0900
+
+    초기 commit. gitignore 파일 추가
