@@ -3,6 +3,8 @@ CVS
 SVN
 GIT
 
+git scm 설치  (모니터 모양) 
+
 start project
 
 npm i express morgan dotenv nunjucks method-override multer cookie-parser express-session
