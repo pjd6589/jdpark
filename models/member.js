@@ -14,7 +14,7 @@ const member = {
 	*
 	* @return Boolean
 	*/
-	join : function (memId, memPw) {
+	join : async function (memId, memPw) {
 		const hash = await bcrypt.hash(memPw, 10);
 		
 		const sql = "INSERT INTO member (memId, memPw) VALUES (:memId, :memPw)";
@@ -24,7 +24,7 @@ const member = {
 			type : QueryTypes.INSERT,
 		});
 		
-		const.log(result);
+		console.log(result);
 	},
 };
 
