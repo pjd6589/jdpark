@@ -38,7 +38,7 @@ const layer = {
 			left: 0,
 			background : "rgba(0,0,0,0.7)",
 			zIndex : 100,
-			cursor: "pointer",
+			cursor : "pointer",
 		});
 		
 		const xpos = parseInt(($(window).width() - width) / 2);
@@ -65,14 +65,15 @@ const layer = {
 			error : function(err) {
 				console.error(err);
 			}
-		});;
+		});
+		
 	},
 	/**
 	* 팝업 닫기 
 	*
 	*/
 	close : function() {
-		$("#layer_dim, #layer_popup")
+		$("#layer_dim, #layer_popup").remove();
 	}
 };
 
