@@ -49,12 +49,24 @@ $(function() {
 			case "경력" : 
 				template = "job_history";
 				break;
-			case "인턴" :
+			case "인턴" : 
 				template = "intern";
 				break;
-			case "교육" :
+			case "교육" : 
 				template = "education";
-				break;				
+				break;
+			case "자격증" : 
+				template = "license"; 
+				break;
+			case "수상" : 
+				template = "award";
+				break;
+			case "해외경험" : 
+				template = "overseas"; 
+				break;
+			case "어학" : 
+				template = "language";
+				break;
 		}
 		
 		if (template) {
