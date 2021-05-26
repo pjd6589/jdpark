@@ -46,12 +46,27 @@ $(function() {
 			case "학력" : 
 				template = "school";
 				break;
+			case "경력" : 
+				template = "job_history";
+				break;
+			case "인턴" :
+				template = "intern";
+				break;
+			case "교육" :
+				template = "education";
+				break;				
 		}
 		
 		if (template) {
-			$html = $("#template_" + template).html();
+			let html = $("#template_" + template).html();
+					
 			$target = $(this).closest(".form_inner").find(".form_html");
-			$target.append($html);
+			if ($target.length > 0) {
+				const no = new Date().getTime();
+				html = html.replace(/<%=no%>/g, no);
+			}
+			
+			$target.append(html);
 		} 
 	});
 	
@@ -59,6 +74,7 @@ $(function() {
 	$("body").on("click", ".form_html .remove", function() {
 		$(this).closest(".rows").remove();
 	});
+	
 	
 	/** textarea 확대 축소 처리 */
 	$("body").on("focus", ".form_html textarea", function() {
