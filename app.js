@@ -5,7 +5,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
-const session = require('express-session'); 
+const session = require('express-session');
 const { sequelize } = require("./models");
 const { loginSession } = require('./middlewares/login_session');
 
@@ -56,6 +56,7 @@ app.use(loginSession);
 app.use("/member", memberRouter);
 app.use("/admin", adminRouter);
 app.use("/upload", uploadRouter);
+
 // 없는 페이지 처리 미들웨어(라우터)
 app.use((req, res, next) => {
 	const error = new Error(`${req.method} ${req.url}은 없는 페이지 입니다.`);
