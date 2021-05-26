@@ -5,7 +5,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const session = require('express-session'); 
 const { sequelize } = require("./models");
 const { loginSession } = require('./middlewares/login_session');
 
