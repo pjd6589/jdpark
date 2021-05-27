@@ -36,6 +36,7 @@
   jhTask: [ '', '' ],
   jhSalary: [ '', '' ],
   jhWork: [ '', '' ],
+  jhInOffice
   
   인턴대외활동 - intern
   internType: [ '', '' ],
