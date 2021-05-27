@@ -1,20 +1,54 @@
 /**
-* 취업우대, 병역 항목 선택시
-* 장애, 병역 선택에 따른 항목 노출
+* 선택한 메뉴에 따라 이력서 양식 항목 노출, 미노출 처리
+*
+*/
+function updateSelectedMenu()
+{
+	$list = $(".floating_box input[type='checkbox']");
+	$.each($list, function () {
+		const target = $(this).data("target");
+		if ($(this).prop("checked")) {
+			$("section." + target).removeClass("dn");
+		} else {
+			$("section." + target).removeClass("dn").addClass("dn");			
+		}
+	});
+}
+
+/**
+* 스크롤시 오른쪽 floating 메뉴 고정 
+*
+*/
+function updateNavFixed()
+{
+	const offset = $(".container .nav").offset();
+	const ypos = offset.top + 100;
+	const st = $(window).scrollTop();
+	$floatingBox = $(".nav .floating_box");	
+	if (ypos > st) { // fixed 제거
+		$floatingBox.removeClass("fixed");
+	} else { // fixed 추가
+		$floatingBox.removeClass("fixed").addClass("fixed");
+	}
+}
+
+/** 
+* 취업우대,병역 항목 선택시 
+* 장애, 병역 선택에 따른 항목 노출 
 *
 */
 function updateBenefit()
 {
 	$list = $(".benefit input[type='checkbox']:checked");
-	let isAdditionalSelect = false; 
-	$(".addtional_select .additional_select dl").removeClass("dn").addClass("dn");
+	let isAdditionalSelect = false;
+	$(".additional_select, .additional_select dl").removeClass("dn").addClass("dn");
 	$.each($list, function() {
 		const benefit = $(this).val();
 		if (benefit == '장애') {
 			isAdditionalSelect = true;
 			$(".additional_select .handicap").removeClass("dn");
 		} else if (benefit == '병역') {
-			isAdditionalSelect = true;			
+			isAdditionalSelect = true;
 			$(".additional_select .military").removeClass("dn");
 		}
 	});
@@ -93,8 +127,11 @@ $(function() {
 			case "어학" : 
 				template = "language";
 				break;
-			case "자기소개" :
+			case "자기소개" : 
 				template = "introduction";
+				break;
+			case "포트폴리오" :
+				template = "portfolio";
 				break;
 		}
 		
@@ -120,7 +157,7 @@ $(function() {
 	/** textarea 확대 축소 처리 */
 	$("body").on("focus", ".form_html textarea", function() {
 		if (!$(this).hasClass("intro")) {
-		$(this).removeClass("h200").addClass("h200");
+			$(this).removeClass("h200").addClass("h200");
 		}
 	});
 	
@@ -133,4 +170,14 @@ $(function() {
 		updateBenefit();
 	});
 	
+	/** 스크롤시 오른쪽 floating 메뉴 고정 */
+	updateNavFixed();
+	$(window).scroll(function() {
+		updateNavFixed();
+	});
+	
+	/** floating 메뉴 선택 처리 */
+	$(".floating_box input[type='checkbox']").click(function() {
+		updateSelectedMenu();
+	});
 });
