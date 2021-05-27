@@ -224,7 +224,7 @@ const resume = {
 			}
 			// license 자격증 처리 E 
 			
-			// award 수상 내역 처리 S
+			// award 수상 내역 처리 S 
 			sql = 'TRUNCATE award';
 			await sequelize.query(sql, { type : QueryTypes.DELETE });
 			if (params.items && params.items.indexOf('수상') != -1) {
@@ -236,15 +236,17 @@ const resume = {
 				}
 				
 				params.awardName.forEach(async (name, index) => {
-					const sql = `INSERT INTO award (name, company, year, description) VALUES (:name, :company, :year, :description)`;
+					const sql = `INSERT INTO award (name, company, year, description) 
+										VALUES (:name, :company, :year, :description)`;
 					const replacements = {
-						name : name,
-						company : params.awardCompany[index],
-						year : params.awardYear[index],
-						description : params.awardDesc[index],
+							name : name,
+							company : params.awardCompany[index],
+							year : params.awardYear[index],
+							description : params.awardDesc[index],
 					};
 					
 					await sequelize.query(sql, {
+						replacements,
 						type : QueryTypes.INSERT,
 					});
 				});
@@ -252,11 +254,117 @@ const resume = {
 			// award 수상 내역 처리 E 
 			
 			// overseas 해외경험 처리 S 
-			if (params.items && params.items.indexOf('해외경험') != -1 {
+			sql = 'TRUNCATE overseas';
+			await sequelize.query(sql, { type : QueryTypes.DELETE });
+			if (params.items && params.items.indexOf('해외경험') != -1) {
+				if (!(params.overseasName instanceof Array)) {
+					params.overseasName = [params.overseasName];
+					params.overseasStartDate = [params.overseasStartDate];
+					params.overseasEndDate = [params.overseasEndDate];
+					params.overseasDesc = [params.overseasDesc];
+				}
 				
+				params.overseasName.forEach(async (name, index) => {
+					const sql = `INSERT INTO overseas (name, startDate, endDate, description)
+										VALUES (:name, :startDate, :endDate, :description)`;
+					
+				const replacements = {
+					name : name,
+					startDate : params.overseasStartDate[index],
+					endDate : params.overseasEndDate[index],
+					description : params.overseasDesc[index],
+					};
+					
+					await sequelize.query(sql, {
+						replacements,
+						type : QueryTypes.INSERT,
+					});
+				});
 			}
-			
 			// overseas 해외경험 처리 E
+			
+			// language 어학처리 S 
+			sql = 'TRUNCATE language';
+			await sequelize.query(sql, { type : QueryTypes.DELETE });
+			if (params.items && params.items.indexOf('어학') != -1) {
+				if (!(params.languageType instanceof Array)) {
+					params.languageType = [params.languageType];
+					params.languageName = [params.languageName];
+					params.languageAbility = [params.languageAbility];
+				}
+				
+				params.languageType.forEach(async (type, index) => {
+					const sql = `INSERT INTO language (type, name, ability)
+										VALUES (:type, :name, :ability)`;
+										
+					const replacements = {
+						type : type,
+						name : params.languageName[index],
+						ability : params.languageAbility[index],
+					};
+
+					await sequelize.query(sql, {
+						replacements,
+						type : QueryTypes.INSERT,
+					});
+				});
+			}
+			// language 어학처리 E
+			
+			// portfolio 포트폴리오 처리 S 
+			sql = 'TRUNCATE portfolio';
+			await sequelize.query(sql, { type : QueryTypes.DELETE });
+			if (params.items && params.items.indexOf('포트폴리오') != -1) {
+				if(!(params.portfolioTitle instanceof Array)) {
+					params.portfolioTitle = [params.portfolioTitle];
+					params.portfolioUrl = [params.portfolioUrl];
+					params.portfolioDesc = [params.portfolioDesc]; 
+				}
+				
+				params.portfolioTitle.forEach(async (title, index) => {
+					const sql = `INSERT INTO portfolio (title, url, description)
+										VALUES (:title, :url, :description)`;
+					
+					const replacements = {
+						title : title,
+						url : params.portfolioUrl[index],
+						description : params.portfolioDesc[index],
+					}
+					
+					await sequelize.query(sql, {
+						replacements,
+						type : QueryTypes.INSERT,
+					});
+				});
+			}
+			// portfolio 포트폴리오 처리 E
+			
+			// introduction 자기소개 S
+			sql = 'TRUNCATE introduction';
+			await sequelize.query(sql, { type : QueryTypes.DELETE });
+			if (params.items && params.items.indexOf('자기소개') != -1) {
+				if (!(params.introductionTitle instanceof Array)) {
+					params.introductionTitle = [params.introductionTitle];
+					params.introduction = [params.introduction];
+				}
+				
+				params.introductionTitle.forEach(async (title, index) => {
+					const sql = `INSERT INTO introduction (title, introduction)
+										VALUES (:title, introduction)`;
+										
+					const replacements = {
+						title : title,
+						introduction : params.introduction[index],
+					}
+					
+					await sequelize.query(sql, {
+						replacements,
+						type : QueryTypes.INSERT,
+					});
+				});
+			}
+			// introduction 자기소개 E
+
 			return true;
 		} catch (err) {
 			console.error(err);
