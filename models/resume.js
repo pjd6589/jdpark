@@ -350,7 +350,7 @@ const resume = {
 				
 				params.introductionTitle.forEach(async (title, index) => {
 					const sql = `INSERT INTO introduction (title, introduction)
-										VALUES (:title, introduction)`;
+										VALUES (:title, :introduction)`;
 										
 					const replacements = {
 						title : title,
