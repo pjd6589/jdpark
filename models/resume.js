@@ -46,6 +46,9 @@ const resume = {
 										  benefit = :benefit,
 										  handicapLevel = :handicapLevel,
 										  military = :military,
+										  militaryStartDate = :militaryStartDate,
+										  militaryEndDate = :militaryEndDate,
+										  militaryRank = :militaryRank,
 										  negotiableSalary = :negotiableSalary`;
 				let replacements = {
 					resumeTitle : params.resumeTitle,
@@ -63,6 +66,9 @@ const resume = {
 					benefit : params.benefit || "",
 					handicapLevel : params.handicapLevel,
 					military : params.military,
+					militaryStartDate : params.militaryStartDate,
+					militaryEndDate : params.militaryEndDate,
+					militaryRank : params.militaryRank,
 					negotiableSalary : params.negotiableSalary || 0,
 				};
 				
@@ -89,7 +95,7 @@ const resume = {
 					params.schoolScore = [params.schoolScore];
 					params.schoolScoreTotal = [params.schoolScoreTotal];
 				}
-				
+		
 				params.schoolType.forEach(async (type, index) => {				
 						const sql = `INSERT INTO school (type, name, startDate, endDate, status, transfer, major, score, scoreTotal)
 												VALUES (:type, :name, :startDate, :endDate, :status, :transfer, :major, :score, :scoreTotal)`;
@@ -105,7 +111,7 @@ const resume = {
 								score : params.schoolScore[index],
 								scoreTotal : params.schoolScoreTotal[index],
 						};
-						
+
 						await sequelize.query(sql, {
 							replacements,
 							type : QueryTypes.INSERT,
