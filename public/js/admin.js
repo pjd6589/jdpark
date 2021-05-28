@@ -1,3 +1,22 @@
+/** 
+* 저장된 이력서 호출 
+*
+*/
+function getResume()
+{
+	$.ajax({
+		url : "/admin/profile",
+		type : "get",
+		dataType : "html",
+		success : function (res) {
+			console.log(res);
+		},
+		error : function (err) {
+			console.error(err);
+		}
+	});
+}
+
 /**
 * 템플릿 양식 추가 처리 
 *
@@ -146,6 +165,9 @@ function uploadCallback(isSuccess)
 }
 
 $(function() {
+	/** 저장된 이력서 호출 */
+	getResume();
+	
 	/** 파일 업로드 처리 */
 	$("body").on("change", ".upload_box input[type='file']", function() {
 		frmUpload.submit();
@@ -203,7 +225,7 @@ $(function() {
 	/** 이력서 저장하기 처리 */
 	$(".floating_box .save").click(function() {
 		if (confirm('정말 저장하시겠습니까?')) {
-		frmProfile.submit();
+			frmProfile.submit();
 		}
 	});
 });
