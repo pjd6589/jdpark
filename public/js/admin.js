@@ -7,9 +7,85 @@ function getResume()
 	$.ajax({
 		url : "/admin/profile",
 		type : "get",
-		dataType : "html",
+		dataType : "json",
 		success : function (res) {
-			console.log(res);
+			/* basicinfo */
+			if (res.basicinfo) {
+				for (key in res.basicinfo) {
+					$target = $("input[name='" + key + "']");
+					if ($target.length > 0) {
+						switch ($target.attr("type")) {
+							case "text" : 
+							case "email" :
+								$target.val(res.basicinfo[key]);
+								break;
+							case "checkbox" :
+								if (res.basicinfo[key] instanceof Array) { // 복수 checkbox
+									// 취업우대, 병역 노출 
+									if (res.basicinfo[key].length > 0) {
+										$("section.benefit").removeClass("dn");
+										$("#selection_items10").prop("checked", true); 
+									}
+									
+									$.each($target, function() {
+										const v = $(this).val();
+										let checked = false;
+										if (res.basicinfo[key].indexOf(v) != -1) {
+											checked = true;
+											
+											if (v == '장애') {
+												$(".additional_select, .additional_select .handicap").removeClass("dn");
+											} else if (v == '병역') {
+												$(".additional_select, .additional_select .military").removeClass("dn");
+											}
+										}
+										
+										$(this).prop("checked", checked);
+									});
+								} else { // 단일 checkbox 
+									$target.prop("checked", res.basicinfo[key]);
+								}
+								break;
+						}
+					}
+				}
+			} // endif
+			/* basicinfo */
+			/** 나머지 테이블 */
+			for (table in res) {
+				if (table == 'basicinfo')continue;
+				let type = "";
+				switch(table) {
+					case "award" :
+						type = "수상";
+						break;
+					case "education" :
+						type = "교육";
+						break;
+					case "intern" :
+						type = "인턴" ;
+						break;
+					case "introduction" :
+						type = "자기소개";
+						break;
+					case "jobhistory":
+						type = "경력";
+						break;
+					case "language" :
+						type = "어학";
+						break;
+					case "license" :
+						type = "자격증";
+						break;
+					case "oversea" :
+						type = "해외경험";
+						break;
+					case "portfolio" :
+						type = "포트폴리오";
+						break;
+				}
+				
+			}
 		},
 		error : function (err) {
 			console.error(err);
