@@ -96,6 +96,12 @@ function getResume()
 			} // endfor
 			/** 나머지 테이블 처리 */
 			
+			/** 이미지 처리 */
+			if (res.profile) {
+				$(".photo_upload").html( `<img src='${res.profile}'>`);
+				$(".photo_upload").parent().append("<i class='xi-close photo_remove'></i>");
+			}
+			
 		},
 		error : function (err) {
 			console.error(err);
@@ -168,7 +174,7 @@ function addForm(type, target, list)
 						const name = $(this).attr("name").toLowerCase();
 						for(key in data) {
 							let keyName = key.toLowerCase();
-							if (keyName == 'description') keyname = 'desc';
+							if (keyName == 'description') keyName = 'desc';
 							
 							if (name.indexOf(keyName) != -1) {
 								// 일치하는 name이 있는 경우 
@@ -349,5 +355,20 @@ $(function() {
 		if (confirm('정말 저장하시겠습니까?')) {
 			frmProfile.submit();
 		}
+	});
+	
+	/** 이력서 이미지 삭제 */
+	$("body").on("click", ".photo_remove", function() {
+		$.ajax({
+			url : "/admin/remove_photo",
+			type : "get",
+			dataType : "html",
+			success : function (res) {
+				console.log(res);
+			},
+			error : function (err) {
+				console.error(err);
+			}
+		});
 	});
 });
