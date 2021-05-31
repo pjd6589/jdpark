@@ -1,21 +1,5 @@
-형상관리툴
-CVS
-SVN
-GIT
+member 
 
-git scm 설치  (모니터 모양) 
-
-start project
-
-npm i express morgan dotenv nunjucks method-override multer cookie-parser express-session
-
-npm i -D nodemon
-
-npm i sequelize sequelize-cil mysql2
-
-npx sequelize init
-
-멤버 테이블 
 CREATE TABLE `member` (
 	`memId` VARCHAR(20) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
 	`memPw` VARCHAR(65) NOT NULL COLLATE 'utf8_general_ci',
@@ -23,10 +7,9 @@ CREATE TABLE `member` (
 	PRIMARY KEY (`memId`) USING BTREE
 )
 COLLATE='utf8_general_ci'
-ENGINE=InnoDB
+ENGINE=InnoDB 
 ;
 
-npm i bcrypt
 
 
 basicinfo
@@ -47,29 +30,38 @@ CREATE TABLE `basicinfo` (
 	`benefit` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`handicapLevel` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`military` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`militaryStartDate` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`militaryEndDate` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`militaryRank` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`negotiableSalary` TINYINT(1) NULL DEFAULT '0'
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
-
-
-sql 실행 후 베이직 인포에 레코드 추가 
-
 school
+
 CREATE TABLE `school` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`type` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`name` VARCHAR(60) NOT NULL COLLATE 'utf8_general_ci',
+	`startDate` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`endDate` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`status` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`transfer` TINYINT(1) NULL DEFAULT '0',
+	`major` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`score` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`gradeTotal` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	PRIMARY KEY (`idx`) USING BTREE
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
+AUTO_INCREMENT=3
 ;
 
 
 jobhistory
+
 CREATE TABLE `jobhistory` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`company` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -87,7 +79,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
 intern
+
 CREATE TABLE `intern` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`type` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -101,7 +95,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
 education
+
 CREATE TABLE `education` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -115,7 +111,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
 license
+
 CREATE TABLE `license` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -126,6 +124,7 @@ CREATE TABLE `license` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
+
 
 award
 CREATE TABLE `award` (
@@ -140,6 +139,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
+overseas
+
 CREATE TABLE `overseas` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -152,6 +154,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
+language 
+
 CREATE TABLE `language` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`type` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -163,6 +168,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
+portfolio
+
 CREATE TABLE `portfolio` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
 	`title` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -173,6 +181,9 @@ CREATE TABLE `portfolio` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
+
+
+introduction
 
 CREATE TABLE `introduction` (
 	`idx` INT(11) NOT NULL AUTO_INCREMENT,
